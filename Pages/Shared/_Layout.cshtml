@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SILG</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">SILG</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Privacy">Política de Privacidade</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Recurso 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Recurso 2</a>
+                        </li>
+                    </ul>
+                    <div id="authenticationSection">
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - SILG - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: 'https://googleauthapi.azurewebsites.net/api/auth/validate',
+                method: 'GET',
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (result) {
+                    if (result && result.email) {
+                        $('#authenticationSection').html(`
+                        <span class="navbar-text mr-2">Olá ${result.email}!</span>
+                        <a class="btn btn-outline-secondary btn-sm" href="https://googleauthapi.azurewebsites.net/api/auth/logout">Sair</a>
+                    `);
+                    } else {
+                        $('#authenticationSection').html(`
+                                    <a class="btn btn-google-login btn-sm" href="https://googleauthapi.azurewebsites.net/api/auth/login">
+                                        <svg width="20" height="20" viewBox="0 0 256 262" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"><path d="M255.878 133.451c0-4.87-.38-9.592-.805-14.314H130.55v27.018h71.947c-1.175 9.55-7.086 27.965-27.018 41.3v34.33h43.372a133.4 133.4 0 0043.025-103.334z" fill="#4285F4" /><path d="M130.55 261.1c33.824 0 62.159-11.343 82.952-30.758l-43.372-34.33c-11.23 7.652-25.542 12.322-39.58 12.322-30.692 0-56.554-20.792-65.766-51.716H21.677v32.626A129.091 129.091 0 00130.55 261.1z" fill="#34A853" /><path d="M64.784 156.956a76.564 76.564 0 01-5.193-24.956c0-8.55 1.062-16.85 3.089-24.955H21.677v32.626l-43.372-34.33a129.65 129.65 0 000 116.978l43.372-34.33z" fill="#FBBC05" /><path d="M130.55 50.479c22.747 0 42.89 9.801 56.953 24.293l43.025-42.805C213.644 10.801 178.62-.192 130.55 0 80.067-.192 42.463 31.314 21.677 77.243l43.372 34.33c9.343-28.003 36.102-48.095 65.501-60.094z" fill="#EA4335" /></svg>
+                                        Entrar com Google
+                                    </a>
+                                `);
+                    }
+                },
+                error: function (error) {
+                    $('#authenticationSection').html(`
+                                    <a class="btn btn-google-login btn-sm" href="https://googleauthapi.azurewebsites.net/api/auth/login">
+                                        <svg width="20" height="20" viewBox="0 0 256 262" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"><path d="M255.878 133.451c0-4.87-.38-9.592-.805-14.314H130.55v27.018h71.947c-1.175 9.55-7.086 27.965-27.018 41.3v34.33h43.372a133.4 133.4 0 0043.025-103.334z" fill="#4285F4" /><path d="M130.55 261.1c33.824 0 62.159-11.343 82.952-30.758l-43.372-34.33c-11.23 7.652-25.542 12.322-39.58 12.322-30.692 0-56.554-20.792-65.766-51.716H21.677v32.626A129.091 129.091 0 00130.55 261.1z" fill="#34A853" /><path d="M64.784 156.956a76.564 76.564 0 01-5.193-24.956c0-8.55 1.062-16.85 3.089-24.955H21.677v32.626l-43.372-34.33a129.65 129.65 0 000 116.978l43.372-34.33z" fill="#FBBC05" /><path d="M130.55 50.479c22.747 0 42.89 9.801 56.953 24.293l43.025-42.805C213.644 10.801 178.62-.192 130.55 0 80.067-.192 42.463 31.314 21.677 77.243l43.372 34.33c9.343-28.003 36.102-48.095 65.501-60.094z" fill="#EA4335" /></svg>
+                                        Entrar com Google
+                                    </a>
+                                `);
+                }
+            });
+        });
+
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

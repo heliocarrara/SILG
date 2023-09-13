@@ -1,0 +1,55 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div id="mainCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://via.placeholder.com/1200x400?text=Slide+1" class="d-block w-100" alt="Slide 1">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Slide 1</h5>
+                <p>Descrição do Slide 1.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://via.placeholder.com/1200x400?text=Slide+2" class="d-block w-100" alt="Slide 2">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Slide 2</h5>
+                <p>Descrição do Slide 2.</p>
+            </div>
+        </div>
+        <!-- Adicione mais slides conforme necessário -->
+    </div>
+    <a class="carousel-control-prev" href="#mainCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Anterior</span>
+    </a>
+    <a class="carousel-control-next" href="#mainCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Próximo</span>
+    </a>
+</div>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Destaques</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="https://via.placeholder.com/350x200?text=Destaque+1" alt="Destaque 1" class="img-fluid mb-4">
+            <h4>Destaque 1</h4>
+            <p>Descrição do destaque 1. Alguma informação relevante aqui.</p>
+        </div>
+        <div class="col-md-4">
+            <img src="https://via.placeholder.com/350x200?text=Destaque+2" alt="Destaque 2" class="img-fluid mb-4">
+            <h4>Destaque 2</h4>
+            <p>Descrição do destaque 2. Alguma informação relevante aqui.</p>
+        </div>
+        <div class="col-md-4">
+            <img src="https://via.placeholder.com/350x200?text=Destaque+3" alt="Destaque 3" class="img-fluid mb-4">
+            <h4>Destaque 3</h4>
+            <p>Descrição do destaque 3. Alguma informação relevante aqui.</p>
+        </div>
+    </div>
+</div>
+
+
